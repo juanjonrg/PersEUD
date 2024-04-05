@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-02-23T10:52:03.281426036Z</date>
+  <millis>1708685523281</millis>
+  <nanos>426036</nanos>
+  <sequence>0</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.JMetalLogger</class>
+  <method>configureLoggers</method>
+  <thread>1</thread>
+  <message>Loggers configured with null</message>
+</record>
+<record>
+  <date>2024-02-23T10:52:03.343405531Z</date>
+  <millis>1708685523343</millis>
+  <nanos>405531</nanos>
+  <sequence>1</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.example.multiobjective.moead.MOEADRunner</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Total execution time: 42680558ms</message>
+</record>
+<record>
+  <date>2024-02-23T10:52:03.355996913Z</date>
+  <millis>1708685523355</millis>
+  <nanos>996913</nanos>
+  <sequence>2</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Random seed: 1708642842629</message>
+</record>
+<record>
+  <date>2024-02-23T10:52:03.356871236Z</date>
+  <millis>1708685523356</millis>
+  <nanos>871236</nanos>
+  <sequence>3</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Objectives values have been written to file FUN.tsv</message>
+</record>
+<record>
+  <date>2024-02-23T10:52:03.357654645Z</date>
+  <millis>1708685523357</millis>
+  <nanos>654645</nanos>
+  <sequence>4</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Variables values have been written to file VAR.tsv</message>
+</record>
+</log>

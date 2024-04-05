@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-05-11T15:07:15.166689Z</date>
+  <millis>1683817635166</millis>
+  <nanos>689000</nanos>
+  <sequence>0</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.JMetalLogger</class>
+  <method>configureLoggers</method>
+  <thread>1</thread>
+  <message>Loggers configured with null</message>
+</record>
+<record>
+  <date>2023-05-11T15:07:15.255685Z</date>
+  <millis>1683817635255</millis>
+  <nanos>685000</nanos>
+  <sequence>1</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.evaluator.impl.MultithreadedSolutionListEvaluator</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>Number of cores: 8</message>
+</record>
+<record>
+  <date>2023-05-11T15:07:15.261275Z</date>
+  <millis>1683817635261</millis>
+  <nanos>275000</nanos>
+  <sequence>2</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.evaluator.impl.MultithreadedSolutionListEvaluator</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>Number of cores: 8</message>
+</record>
+<record>
+  <date>2023-05-11T15:07:15.262249Z</date>
+  <millis>1683817635262</millis>
+  <nanos>249000</nanos>
+  <sequence>3</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.evaluator.impl.MultithreadedSolutionListEvaluator</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>Number of cores: 8</message>
+</record>
+</log>
