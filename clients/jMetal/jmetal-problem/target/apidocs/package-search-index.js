@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.uma.jmetal.problem.multiobjective.lz09"}];updateSearchResults();

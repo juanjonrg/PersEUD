@@ -6,8 +6,8 @@ from datetime import datetime
 def dprint(*args, **kw):
     print('[' + datetime.now().isoformat(sep=' ', timespec='milliseconds') + ']', *args, **kw)
 
-FRONTEND = "tcp://*:3555"
-BACKEND = "tcp://*:3556"
+FRONTEND = "tcp://*:3559"
+BACKEND = "tcp://*:3560"
 context = zmq.Context(1)
 frontend = context.socket(zmq.ROUTER)
 backend = context.socket(zmq.ROUTER)
@@ -42,6 +42,7 @@ while True:
 
         # Forward message to client if it's not a READY
         if reply[0] != b'READY':
+            print("REPLY:", reply)
             frontend.send_multipart(reply)
             dprint('Worker {} replied: {}'.format(msg[0].decode(), msg[4].decode().rstrip()))
         else:
@@ -50,6 +51,7 @@ while True:
     # Client management in the frontend
     if socks.get(frontend) == zmq.POLLIN:
         msg = frontend.recv_multipart()
+        print("FRONT END", msg)
         jobs.append(msg)
 
     # Job management

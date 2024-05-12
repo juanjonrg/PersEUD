@@ -90,6 +90,9 @@ struct SparseMatrix {
         free(rows);
         free(cols);
         free(vals);
+        free(rows_t);
+        free(cols_t);
+        free(vals_t);
     }
 };
 
@@ -895,18 +898,26 @@ void json_parse_roi(cJSON *json, const char *name, Region *region) {
         cJSON *roi_eud = cJSON_GetObjectItem(roi, "EUD_0");
         cJSON *roi_n = cJSON_GetObjectItem(roi, "n");
         if (roi_a) {
-            //printf("%s: %s\n", "a", cJSON_PrintUnformatted(roi_a));
+            printf("%s: %s\n", "a", cJSON_PrintUnformatted(roi_a));
             region->alpha = roi_a->valuedouble;
+            //cJSON_Delete(roi_a);
         }
         if (roi_n) {
-            //printf("%s: %s\n", "n", cJSON_PrintUnformatted(roi_n));
+            printf("%s: %s\n", "n", cJSON_PrintUnformatted(roi_n));
             region->penalty = roi_n->valuedouble;
+            //cJSON_Delete(roi_n);
         }
         if (roi_eud) {
-            //printf("%s: %s\n", "EUD_0", cJSON_PrintUnformatted(roi_eud));
+            printf("%s: %s\n", "EUD_0", cJSON_PrintUnformatted(roi_eud));
             region->pr_eud = roi_eud->valuedouble;
+            //cJSON_Delete(roi_eud);
         }
+        
+
+         //cJSON_Delete(roi);
     }
+   
+    
 }
 
 int main(int argc, char **argv) {
@@ -938,7 +949,7 @@ int main(int argc, char **argv) {
     gethostname(hostname, 3);
     sprintf(identity, "%s-%04d", hostname, getpid());
     zmq_setsockopt(zsock_resolve(worker), ZMQ_IDENTITY, identity, strlen(identity));
-	zsock_connect(worker, "tcp://bullxual:3556");
+	zsock_connect(worker, "tcp://bullxual:3560");
 
 	zframe_t *frame = zframe_new("READY", 5);
 	zframe_send(&frame, worker, 0);
@@ -950,7 +961,7 @@ int main(int argc, char **argv) {
         if (!msg) break; // Error!
         char *data = zframe_strdup(zmsg_last(msg));
         printf("Received raw data: %s\n", data);
-
+        
         cJSON *json = cJSON_Parse(data);
         cJSON *json_plan = NULL;
         cJSON *json_plans = cJSON_GetObjectItemCaseSensitive(json, "Plans");
@@ -988,7 +999,7 @@ int main(int argc, char **argv) {
         int i = 0;
         cJSON_ArrayForEach(json_plan, json_plans) {
             printf("Received parameters for Plan %d:\n", i);
-            cJSON *json_params = cJSON_GetObjectItemCaseSensitive(json_plan, "Parameters");
+            cJSON *json_params = cJSON_GetObjectItemCaseSensitive(json_plan, "Variables");
             json_parse_roi(json_params, "Salivary Gland R", &plan.regions[i*plan.n_regions +  3]);
             json_parse_roi(json_params, "Salivary Gland L", &plan.regions[i*plan.n_regions +  4]);
             json_parse_roi(json_params, "Spinal Cord +3mm", &plan.regions[i*plan.n_regions +  5]);
@@ -997,6 +1008,7 @@ int main(int argc, char **argv) {
             json_parse_roi(json_params, "PTV 66",           &plan.regions[i*plan.n_regions + 10]);
             printf("\n");
             i++;
+            cJSON_Delete(json_params);
         }
 
         optimize(plan);
@@ -1008,12 +1020,39 @@ int main(int argc, char **argv) {
             cJSON_AddNumberToObject(evaluation, "f1", plan.f1[i]);
             cJSON_AddItemToArray(evaluations, evaluation);
         }
+        free(plan.f0);
+        free(plan.f1);
+        free(plan.fluence);
+        free(plan.smoothed_fluence);
+        free(plan.doses);
+        free(plan.beam_maps);
+        free(plan.voxel_regions);
+        free(plan.n_beamlets_beam);
+        free(plan.name);
+        plan.spm.free_cpu();
+        for(int i = 0; i < plan.n_regions;i++){
+            free(plan.regions[i].name);
+        }
+        
+        free(plan.regions);
+        mkl_sparse_destroy(plan.m);
+         mkl_sparse_destroy(plan.m_t);
+       
+
+        free(data);
+        //cJSON_Delete(json);
+        //cJSON_Delete(json_plan);
+        //cJSON_Delete(json_plans);
+
         char *response = cJSON_PrintUnformatted(evaluations);
         printf("Replying: %s\n", response);
 
         zframe_reset(zmsg_last(msg), response, strlen(response));
 		zmsg_send(&msg, worker);
+        
     }
+   
+    
 
 	if (frame)
         zframe_destroy(&frame);

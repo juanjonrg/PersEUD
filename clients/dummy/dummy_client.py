@@ -7,8 +7,8 @@ from random import randint
 def dprint(*args, **kw):
     print('[' + datetime.now().isoformat(sep=' ', timespec='milliseconds') + ']', *args, **kw)
 
-FRONTEND = "tcp://bullxual:3555"
-REQUEST_TIMEOUT = 2000000
+FRONTEND = "tcp://bullxual:3559"
+REQUEST_TIMEOUT = 20000000
 REQUEST_RETRIES = 100
 
 dprint(f'Connecting to {FRONTEND}...')

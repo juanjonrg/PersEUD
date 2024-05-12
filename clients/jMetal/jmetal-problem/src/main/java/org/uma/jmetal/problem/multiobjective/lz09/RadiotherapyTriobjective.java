@@ -33,7 +33,7 @@ public class RadiotherapyTriobjective extends AbstractDoubleProblem {
 
   private final static int REQUEST_TIMEOUT = 500000; // msecs, (> 1000!)
   private final static int REQUEST_RETRIES = 3; // Before we abandon
-  private final static String SERVER_ENDPOINT = "tcp://0.0.0.0:3555";
+  private final static String SERVER_ENDPOINT = "tcp://0.0.0.0:3557";
 
   private Socket client;
   private final ZContext context;
