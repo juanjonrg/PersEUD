@@ -1,1 +1,4 @@
+# Ignoring the compiled files of jMetal
 clients/jMetal/jmetal-algorithm/target/
+clients/jMetal/jmetal-core/target/
+clients/jMetal/jmetal-problem/target/

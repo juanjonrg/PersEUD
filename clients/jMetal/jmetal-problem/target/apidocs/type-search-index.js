@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"org.uma.jmetal.problem.multiobjective.lz09","l":"LZ09"},{"p":"org.uma.jmetal.problem.multiobjective.lz09","l":"RadiotherapyTriobjective"}];updateSearchResults();

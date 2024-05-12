@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.uma.jmetal.algorithm.multiobjective.moead"},{"l":"org.uma.jmetal.algorithm.multiobjective.moead.util"}];updateSearchResults();
